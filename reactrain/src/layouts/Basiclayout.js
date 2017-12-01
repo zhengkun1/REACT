@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, Icon, Layout } from 'antd';
+import { Menu, Icon, Layout, Button } from 'antd';
 // import default from 'antd/lib/layout/layout';
 import { ContainerQuery } from 'react-container-query';
 // import DocumentTitle from 'react-document-title';
@@ -30,54 +30,91 @@ const query = {
 const { Header, Sider, Footer, Content } = Layout;
 const SubMenu = Menu.SubMenu;
 class Basiclayout extends React.PureComponent {
-  // state = {
-  //   collapsed: false,
-  // }
-  // toggleCollapsed = () => {
-  //   this.setState({
-  //     collapsed: !this.state.collapsed,
-  //   });
-  // }
+  state = {
+    collapsed: false,
+  }
+  toggleCollapsed = () => {
+    this.setState({
+      collapsed: !this.state.collapsed,
+    });
+  }
+  toggle = () => {
+    const { collapsed } = this.props;
+    this.props.dispatch({
+      type: 'global/changeLayoutCollapsed',
+      payload: !collapsed,
+    });
+    this.triggerResizeEvent();
+  }
   render() {
+    const { collapsed } = this.props;
     const layout = (
       <div>
         <Layout>
-          <Sider>
+          <Sider
+            trigger={null}
+            collapsible
+            collapsed={collapsed}
+            // breakpoint="md"
+            onCollapse={this.onCollapse}
+            // width={240}
+            className={styles.sider}
+          >
             <div className={styles.logo}>
               <Link to="/">
-                <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511856312156&di=0ce823e8153d811a7dadd328b207480f&imgtype=0&src=http%3A%2F%2Fp2.qhimg.com%2Ft0145a60954e264f295.png" alt="logo" />
-                <h1>H1Z1饰品</h1>
+                <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=384327327,1618679991&fm=27&gp=0.jpg" alt="logo" />
+                <h1>
+                  H1Z1饰品交易
+                </h1>
               </Link>
             </div>
             <Menu
-              onClick={this.handleClick}
-              style={{ width: 200 }}
               defaultSelectedKeys={['1']}
               defaultOpenKeys={['sub1']}
               mode="inline"
+              theme="light"
+              inlineCollapsed={this.state.collapsed}
             >
-              <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>枪支</span></span>}>
-                <Menu.Item key="5">霰弹枪</Menu.Item>
-                <Menu.Item key="6">AR-15</Menu.Item>
-                <Menu.Item key="6">AK</Menu.Item>
-                <SubMenu key="sub3" title="AK">
-                  <Menu.Item key="7">Option 7</Menu.Item>
-                  <Menu.Item key="8">Option 8</Menu.Item>
-                </SubMenu>
+              <Menu.Item key="1">
+                <Icon type="pie-chart" />
+                <span>枪支</span>
+              </Menu.Item>
+              <Menu.Item key="2">
+                <Icon type="desktop" />
+                <span>皮肤</span>
+              </Menu.Item>
+              <Menu.Item key="3">
+                <Icon type="inbox" />
+                <span>裤子</span>
+              </Menu.Item>
+              <SubMenu key="sub1" title={<span><Icon type="mail" /><span>头部</span></span>}>
+                <Menu.Item key="5">摩托车头盔</Menu.Item>
+                <Menu.Item key="6">半盔</Menu.Item>
+                <Menu.Item key="7">帽子</Menu.Item>
+                <Menu.Item key="8">Option 8</Menu.Item>
               </SubMenu>
-              <SubMenu key="sub4" title={<span><Icon type="setting" /><span>鞋子</span></span>}>
+              <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>鞋子</span></span>}>
                 <Menu.Item key="9">潜行鞋</Menu.Item>
                 <Menu.Item key="10">运动鞋</Menu.Item>
-                <Menu.Item key="11">工作鞋</Menu.Item>
+                <SubMenu key="sub3" title="Submenu">
+                  <Menu.Item key="11">Option 11</Menu.Item>
+                  <Menu.Item key="12">Option 12</Menu.Item>
+                </SubMenu>
               </SubMenu>
             </Menu>
           </Sider>
           <Layout>
-            <Header>标题栏</Header>
+            <Header className={styles.header}>
+              <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
+                <Icon type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} />
+              </Button>
+            </Header>
             <Content>
-              <div style={{ minHeight: 'calc(100vh - 110px)' }}>neirong</div>
+              <div style={{ minHeight: 'calc(100vh - 110px)' }}>Loading......</div>
             </Content>
-            <Footer>底部</Footer>
+            <Footer>
+              this is a fotter!!!
+            </Footer>
           </Layout>
         </Layout>
       </div>
