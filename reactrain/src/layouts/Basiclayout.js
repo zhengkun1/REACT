@@ -28,7 +28,7 @@ const query = {
   },
 };
 const { Header, Sider, Footer, Content } = Layout;
-const SubMenu = Menu.SubMenu;
+// const SubMenu = Menu.SubMenu;
 class Basiclayout extends React.PureComponent {
   state = {
     collapsed: false,
@@ -75,7 +75,7 @@ class Basiclayout extends React.PureComponent {
               theme="light"
               inlineCollapsed={this.state.collapsed}
             >
-              <Menu.Item key="1">
+              {/* <Menu.Item key="1">
                 <Icon type="pie-chart" />
                 <span>枪支</span>
               </Menu.Item>
@@ -100,7 +100,7 @@ class Basiclayout extends React.PureComponent {
                   <Menu.Item key="11">Option 11</Menu.Item>
                   <Menu.Item key="12">Option 12</Menu.Item>
                 </SubMenu>
-              </SubMenu>
+              </SubMenu> */}
             </Menu>
           </Sider>
           <Layout>
