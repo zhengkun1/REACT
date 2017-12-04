@@ -28,7 +28,7 @@ const query = {
   },
 };
 const { Header, Sider, Footer, Content } = Layout;
-// const SubMenu = Menu.SubMenu;
+// const Sub  Menu = Menu.SubMenu;
 class Basiclayout extends React.PureComponent {
   state = {
     collapsed: false,
