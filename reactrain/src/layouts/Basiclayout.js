@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, Icon, Layout, Button } from 'antd';
+import { Menu, Icon, Layout } from 'antd';
 // import default from 'antd/lib/layout/layout';
 import { ContainerQuery } from 'react-container-query';
 // import DocumentTitle from 'react-document-title';
@@ -33,31 +33,21 @@ class Basiclayout extends React.PureComponent {
   state = {
     collapsed: false,
   }
-  toggleCollapsed = () => {
+  toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed,
     });
   }
-  toggle = () => {
-    const { collapsed } = this.props;
-    this.props.dispatch({
-      type: 'global/changeLayoutCollapsed',
-      payload: !collapsed,
-    });
-    this.triggerResizeEvent();
-  }
   render() {
-    const { collapsed } = this.props;
+    // const { collapsed } = this.props;
+    const { SubMenu } = Menu;
     const layout = (
       <div>
         <Layout>
           <Sider
             trigger={null}
             collapsible
-            collapsed={collapsed}
-            // breakpoint="md"
-            onCollapse={this.onCollapse}
-            // width={240}
+            collapsed={this.state.collapsed}
             className={styles.sider}
           >
             <div className={styles.logo}>
@@ -75,7 +65,7 @@ class Basiclayout extends React.PureComponent {
               theme="light"
               inlineCollapsed={this.state.collapsed}
             >
-              {/* <Menu.Item key="1">
+              <Menu.Item key="1">
                 <Icon type="pie-chart" />
                 <span>枪支</span>
               </Menu.Item>
@@ -100,14 +90,16 @@ class Basiclayout extends React.PureComponent {
                   <Menu.Item key="11">Option 11</Menu.Item>
                   <Menu.Item key="12">Option 12</Menu.Item>
                 </SubMenu>
-              </SubMenu> */}
+              </SubMenu>
             </Menu>
           </Sider>
           <Layout>
             <Header className={styles.header}>
-              <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
-                <Icon type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'} />
-              </Button>
+              <Icon
+                className={styles.trigger}
+                type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                onClick={this.toggle}
+              />
             </Header>
             <Content>
               <div style={{ minHeight: 'calc(100vh - 110px)' }}>Loading......</div>
