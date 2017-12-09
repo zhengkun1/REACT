@@ -106,7 +106,7 @@ class Basiclayout extends React.PureComponent {
                   <Menu.Item key="12">Option 12</Menu.Item>
                 </SubMenu>
               </SubMenu>
-              <SubMenu key="sub3" title={<span><Icon type="login" /><span>登录界面</span></span>}>
+              <SubMenu key="sub4" title={<span><Icon type="login" /><span>登录界面</span></span>}>
                 <Menu.Item key="13"><Link to="/user">登录</Link></Menu.Item>
               </SubMenu>
             </Menu>
@@ -125,11 +125,12 @@ class Basiclayout extends React.PureComponent {
               /> */}
             </Header>
             <Content>
-              <div style={{ minHeight: 'calc(100vh - 110px)' }}>Loading......</div>
-              <Switch>
-                <Route path="/gun" render={() => (<h3>这里是枪支皮肤</h3>)} />
-                <Route path="/skin" render={() => (<h3>这里是衣服</h3>)} />
-              </Switch>
+              <div style={{ minHeight: 'calc(100vh - 110px)' }}>
+                <Switch>
+                  <Route path="/gun" render={() => (<h3>这里是枪支皮肤</h3>)} />
+                  <Route path="/skin" render={() => (<h3>这里是衣服</h3>)} />
+                </Switch>
+              </div>
             </Content>
             <Footer>
               this is a fotter!!!
